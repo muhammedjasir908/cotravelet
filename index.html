@@ -7,22 +7,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
 <style>
 :root {
+  --navy: #102A54;
+  --navy2: #0B1B36;
   --sky: #1BBFEA;
-  --sky-dark: #0EA5D4;
-  --sky-light: #E8F9FD;
+  --sky-light: rgba(27, 191, 234, 0.1);
+  --sky-dark: #0F9BC0;
   --orange: #FF7043;
-  --orange-light: #FFF3EF;
-  --navy: #1A2340;
-  --navy2: #232E4A;
-  --white: #ffffff;
-  --gray-bg: #F5F8FC;
-  --gray-text: #8A94A6;
-  --text: #1A2340;
-  --card-shadow: 0 8px 32px rgba(27,191,234,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  --white: #FFFFFF;
+  --gray-bg: #F8FAFC;
+  --text: #4A5568;
+  --card-shadow: 0 10px 30px rgba(0,0,0,0.04);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Nunito Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+body { font-family: 'Nunito Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; position: relative; }
 
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
@@ -273,6 +271,7 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
   height: 100%;
   z-index: 1;
   pointer-events: none;
+  overflow: visible;
 }
 .scroll-airplane {
   position: absolute;
@@ -633,12 +632,19 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
     const w = document.documentElement.scrollWidth;
     const h = document.documentElement.scrollHeight;
     
-    // Zigzag bezier curve extending past the bottom
+    // Explicitly set SVG dimensions to prevent clipping
+    const svg = document.getElementById('flight-route-svg');
+    if (svg) {
+      svg.style.width = w + 'px';
+      svg.style.height = h + 'px';
+    }
+    
+    // Zigzag bezier curve extending to the bottom (minus 50px to prevent overflow space)
     const d = `M ${w * 0.1}, 100 
                C ${w * 0.6}, ${h * 0.1}   ${w * 0.9}, ${h * 0.2}   ${w * 0.8}, ${h * 0.3}
                C ${w * 0.7}, ${h * 0.4}   ${w * 0.1}, ${h * 0.5}   ${w * 0.2}, ${h * 0.6}
                C ${w * 0.3}, ${h * 0.7}   ${w * 0.9}, ${h * 0.8}   ${w * 0.8}, ${h * 0.9}
-               C ${w * 0.7}, ${h * 0.95}  ${w * 0.5}, ${h * 0.98}  ${w * 0.5}, ${h + 100}`;
+               C ${w * 0.7}, ${h * 0.95}  ${w * 0.5}, ${h * 0.98}  ${w * 0.5}, ${h - 50}`;
     flightPath.setAttribute('d', d);
   }
 
