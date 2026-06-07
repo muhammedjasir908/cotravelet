@@ -734,12 +734,32 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
       svg.style.height = h + 'px';
     }
     
-    const d = `M ${w * 0.1}, 150 
-               C ${w * 0.6}, ${h * 0.1}   ${w * 0.9}, ${h * 0.2}   ${w * 0.8}, ${h * 0.3}
-               C ${w * 0.7}, ${h * 0.4}   ${w * 0.1}, ${h * 0.5}   ${w * 0.2}, ${h * 0.6}
-               C ${w * 0.3}, ${h * 0.7}   ${w * 0.9}, ${h * 0.8}   ${w * 0.8}, ${h * 0.9}
-               C ${w * 0.7}, ${h * 0.95}  ${w * 0.5}, ${h * 0.98}  ${w * 0.5}, ${h - 50}`;
-    flightPath.setAttribute('d', d);
+    let currentX = w / 2;
+    let currentY = 150;
+    let path = `M ${currentX} ${currentY} `;
+    
+    const steps = 8; // More sweeps for extra distance
+    const stepY = (h - 250) / steps;
+    
+    for(let i = 0; i < steps; i++) {
+      const isRight = i % 2 === 0;
+      // Sweep wide left and right. End at center for the final step.
+      const targetX = (i === steps - 1) ? w / 2 : (isRight ? w * 0.85 : w * 0.15);
+      const targetY = currentY + stepY;
+      
+      // Control points pull vertically to make a smooth 'S' wave
+      const cp1X = currentX;
+      const cp1Y = currentY + stepY * 0.6;
+      const cp2X = targetX;
+      const cp2Y = targetY - stepY * 0.6;
+      
+      path += `C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${targetX} ${targetY} `;
+      
+      currentX = targetX;
+      currentY = targetY;
+    }
+    
+    flightPath.setAttribute('d', path);
 
     positionElement('start-pin', flightPath.getPointAtLength(0), 0);
 
