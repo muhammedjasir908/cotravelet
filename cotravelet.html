@@ -281,28 +281,27 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
 .route-pin svg { width: 100%; height: 100%; fill: var(--orange); }
 
 .scroll-travelers {
-  position: absolute; top: -16px; left: -16px; z-index: 6; pointer-events: none;
+  position: absolute; top: -20px; left: -20px; z-index: 6; pointer-events: none;
   display: flex; align-items: center; 
-  will-change: transform; transition: transform 0.15s ease-out;
-  transform-origin: 16px 50%;
+  will-change: transform; transition: transform 0.15s linear;
+  transform-origin: 20px 50%;
 }
 .traveler-icon {
-  width: 32px; height: 32px; background: white; border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 2px solid var(--sky);
+  width: 40px; height: 40px; 
   display: flex; align-items: center; justify-content: center;
-  opacity: 0; transform: scale(0); margin-left: -16px;
+  opacity: 0; transform: scale(0); margin-left: -20px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.traveler-icon:first-child { opacity: 1; transform: scale(1); margin-left: 0; border-color: var(--navy); z-index: 10; }
-.traveler-icon.visible { opacity: 1; transform: scale(1); margin-left: -12px; }
+.traveler-icon:first-child { opacity: 1; transform: scale(1); margin-left: 0; z-index: 10; }
+.traveler-icon.visible { opacity: 1; transform: scale(1); margin-left: -18px; }
 
 #t0 { z-index: 6; }
-#t1 { z-index: 5; border-color: #EF5350; }
-#t2 { z-index: 4; border-color: #66BB6A; }
-#t3 { z-index: 3; border-color: #FFA726; }
-#t4 { z-index: 2; border-color: #AB47BC; }
-#t5 { z-index: 1; border-color: #42A5F5; }
-.traveler-icon svg { width: 20px; height: 20px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+#t1 { z-index: 5; }
+#t2 { z-index: 4; }
+#t3 { z-index: 3; }
+#t4 { z-index: 2; }
+#t5 { z-index: 1; }
+.traveler-icon svg { width: 32px; height: 32px; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); }
 #t0 svg { stroke: var(--navy); }
 #t1 svg { stroke: #EF5350; }
 #t2 svg { stroke: #66BB6A; }
@@ -311,18 +310,40 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
 #t5 svg { stroke: #42A5F5; }
 
 .waiting-person {
-  position: absolute; z-index: 4; width: 32px; height: 32px; background: white; border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 2px dashed rgba(0,0,0,0.2);
+  position: absolute; z-index: 4; width: 40px; height: 40px;
   display: flex; align-items: center; justify-content: center;
   transform: translate(-50%, -50%); transition: all 0.4s ease;
 }
 .waiting-person.picked-up { opacity: 0; transform: translate(-50%, -50%) scale(0); }
-.waiting-person svg { width: 16px; height: 16px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.waiting-person svg { width: 32px; height: 32px; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); }
 #waiting-0 svg { stroke: #EF5350; }
 #waiting-1 svg { stroke: #66BB6A; }
 #waiting-2 svg { stroke: #FFA726; }
 #waiting-3 svg { stroke: #AB47BC; }
 #waiting-4 svg { stroke: #42A5F5; }
+
+/* Walking Animations */
+.leg1, .leg2 { transform-origin: 16px 13px; }
+.arm1, .arm2 { transform-origin: 15px 7px; }
+
+.walking .leg1 { animation: swing1 0.4s infinite alternate ease-in-out; }
+.walking .leg2 { animation: swing2 0.4s infinite alternate ease-in-out; }
+.walking .arm1 { animation: swing2 0.4s infinite alternate ease-in-out; }
+.walking .arm2 { animation: swing1 0.4s infinite alternate ease-in-out; }
+.walking .character { animation: bob 0.2s infinite alternate ease-in-out; }
+
+@keyframes swing1 {
+  0% { transform: rotate(-30deg); }
+  100% { transform: rotate(30deg); }
+}
+@keyframes swing2 {
+  0% { transform: rotate(30deg); }
+  100% { transform: rotate(-30deg); }
+}
+@keyframes bob {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-1.5px); }
+}
 
 .end-destination {
   position: absolute; z-index: 5; display: flex; align-items: center; gap: 8px;
@@ -363,20 +384,20 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
 </div>
 
 <!-- Waiting Buddies at sections -->
-<div id="waiting-0" class="waiting-person"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
-<div id="waiting-1" class="waiting-person"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
-<div id="waiting-2" class="waiting-person"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
-<div id="waiting-3" class="waiting-person"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
-<div id="waiting-4" class="waiting-person"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
+<div id="waiting-0" class="waiting-person"><svg viewBox="0 0 24 24"><g class="character"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path class="leg1" d="M16 13v8"/><path class="leg2" d="M16 13v8"/><path class="arm1" d="M15 7v5"/><path class="arm2" d="M15 7v5"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></g></svg></div>
+<div id="waiting-1" class="waiting-person"><svg viewBox="0 0 24 24"><g class="character"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path class="leg1" d="M16 13v8"/><path class="leg2" d="M16 13v8"/><path class="arm1" d="M15 7v5"/><path class="arm2" d="M15 7v5"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></g></svg></div>
+<div id="waiting-2" class="waiting-person"><svg viewBox="0 0 24 24"><g class="character"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path class="leg1" d="M16 13v8"/><path class="leg2" d="M16 13v8"/><path class="arm1" d="M15 7v5"/><path class="arm2" d="M15 7v5"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></g></svg></div>
+<div id="waiting-3" class="waiting-person"><svg viewBox="0 0 24 24"><g class="character"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path class="leg1" d="M16 13v8"/><path class="leg2" d="M16 13v8"/><path class="arm1" d="M15 7v5"/><path class="arm2" d="M15 7v5"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></g></svg></div>
+<div id="waiting-4" class="waiting-person"><svg viewBox="0 0 24 24"><g class="character"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path class="leg1" d="M16 13v8"/><path class="leg2" d="M16 13v8"/><path class="arm1" d="M15 7v5"/><path class="arm2" d="M15 7v5"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></g></svg></div>
 
 <!-- The Moving Travelers Group -->
 <div id="scroll-travelers" class="scroll-travelers">
-  <div class="traveler-icon" id="t0"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
-  <div class="traveler-icon hidden" id="t1"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
-  <div class="traveler-icon hidden" id="t2"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
-  <div class="traveler-icon hidden" id="t3"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
-  <div class="traveler-icon hidden" id="t4"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
-  <div class="traveler-icon hidden" id="t5"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
+  <div class="traveler-icon" id="t0"><svg viewBox="0 0 24 24"><g class="character"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path class="leg1" d="M16 13v8"/><path class="leg2" d="M16 13v8"/><path class="arm1" d="M15 7v5"/><path class="arm2" d="M15 7v5"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></g></svg></div>
+  <div class="traveler-icon hidden" id="t1"><svg viewBox="0 0 24 24"><g class="character"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path class="leg1" d="M16 13v8"/><path class="leg2" d="M16 13v8"/><path class="arm1" d="M15 7v5"/><path class="arm2" d="M15 7v5"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></g></svg></div>
+  <div class="traveler-icon hidden" id="t2"><svg viewBox="0 0 24 24"><g class="character"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path class="leg1" d="M16 13v8"/><path class="leg2" d="M16 13v8"/><path class="arm1" d="M15 7v5"/><path class="arm2" d="M15 7v5"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></g></svg></div>
+  <div class="traveler-icon hidden" id="t3"><svg viewBox="0 0 24 24"><g class="character"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path class="leg1" d="M16 13v8"/><path class="leg2" d="M16 13v8"/><path class="arm1" d="M15 7v5"/><path class="arm2" d="M15 7v5"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></g></svg></div>
+  <div class="traveler-icon hidden" id="t4"><svg viewBox="0 0 24 24"><g class="character"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path class="leg1" d="M16 13v8"/><path class="leg2" d="M16 13v8"/><path class="arm1" d="M15 7v5"/><path class="arm2" d="M15 7v5"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></g></svg></div>
+  <div class="traveler-icon hidden" id="t5"><svg viewBox="0 0 24 24"><g class="character"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path class="leg1" d="M16 13v8"/><path class="leg2" d="M16 13v8"/><path class="arm1" d="M15 7v5"/><path class="arm2" d="M15 7v5"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></g></svg></div>
 </div>
 
 <!-- End Destination -->
@@ -780,6 +801,11 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
     const travelers = document.getElementById('scroll-travelers');
     if(travelers) {
       travelers.style.transform = `translate(${pt.x}px, ${pt.y}px) scaleX(${scaleX})`;
+      travelers.classList.add('walking');
+      clearTimeout(window.walkTimeout);
+      window.walkTimeout = setTimeout(() => {
+        travelers.classList.remove('walking');
+      }, 150);
     }
 
     waitingPoints.forEach(wp => {
