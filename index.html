@@ -259,7 +259,7 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
 .services-header, .services-grid, 
 .how-grid, .how-visual, .showcase-grid, 
 .roadmap-header, .roadmap-grid, .dev-banner,
-.platforms-header, .plat-grid, .ticker-wrap, footer {
+.platforms-header, .plat-grid, .ticker-wrap, .footer-top, .footer-bottom {
   position: relative;
   z-index: 10;
 }
@@ -282,27 +282,7 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
   pointer-events: none;
   will-change: transform;
 }
-.path-label {
-  position: absolute;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(8px);
-  padding: 8px 16px;
-  border-radius: 50px;
-  box-shadow: 0 8px 24px rgba(27,191,234,0.2);
-  border: 1px solid rgba(27,191,234,0.4);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-.path-label.visible { opacity: 1; }
-.path-label-icon { font-size: 1.4rem; }
-.path-label-text { font-family: 'Nunito', sans-serif; font-size: 0.75rem; font-weight: 800; color: var(--navy); line-height: 1.2; text-transform: uppercase; letter-spacing: 0.05em; }
-.path-label-text span { font-size: 0.6rem; color: var(--sky-dark); font-weight: 700; display: block; margin-top: 2px; letter-spacing: 0; text-transform: none; }
+
 
 
 
@@ -328,23 +308,6 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
   <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--sky-dark)" style="filter: drop-shadow(0 4px 8px rgba(27,191,234,0.4));">
     <path d="M21,16V14L13,9V3.5A1.5,1.5 0 0,0 11.5,2A1.5,1.5 0 0,0 10,3.5V9L2,14V16L10,13.5V19L8,20.5V22L11.5,21L15,22V20.5L13,19V13.5L21,16Z" />
   </svg>
-</div>
-
-<div id="label-start" class="path-label">
-  <div class="path-label-icon">🛫</div>
-  <div class="path-label-text">Flight Boarding<br/><span>Start Journey</span></div>
-</div>
-<div id="label-mid1" class="path-label">
-  <div class="path-label-icon">📍</div>
-  <div class="path-label-text">Transit Point 1<br/><span>Discover Features</span></div>
-</div>
-<div id="label-mid2" class="path-label">
-  <div class="path-label-icon">📍</div>
-  <div class="path-label-text">Transit Point 2<br/><span>View Roadmap</span></div>
-</div>
-<div id="label-end" class="path-label">
-  <div class="path-label-icon">🛬</div>
-  <div class="path-label-text">Destination Reached<br/><span>Ready to Launch</span></div>
 </div>
 
 <nav>
@@ -670,30 +633,13 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
     const w = document.documentElement.scrollWidth;
     const h = document.documentElement.scrollHeight;
     
-    // Zigzag bezier curve
+    // Zigzag bezier curve extending past the bottom
     const d = `M ${w * 0.1}, 100 
                C ${w * 0.6}, ${h * 0.1}   ${w * 0.9}, ${h * 0.2}   ${w * 0.8}, ${h * 0.3}
                C ${w * 0.7}, ${h * 0.4}   ${w * 0.1}, ${h * 0.5}   ${w * 0.2}, ${h * 0.6}
                C ${w * 0.3}, ${h * 0.7}   ${w * 0.9}, ${h * 0.8}   ${w * 0.8}, ${h * 0.9}
-               C ${w * 0.7}, ${h * 0.95}  ${w * 0.5}, ${h * 0.98}  ${w * 0.5}, ${h - 100}`;
+               C ${w * 0.7}, ${h * 0.95}  ${w * 0.5}, ${h * 0.98}  ${w * 0.5}, ${h + 100}`;
     flightPath.setAttribute('d', d);
-
-    const pathLength = flightPath.getTotalLength();
-    if(pathLength > 0) {
-      positionLabel('label-start', flightPath.getPointAtLength(0), -35);
-      positionLabel('label-mid1', flightPath.getPointAtLength(pathLength * 0.33), -35);
-      positionLabel('label-mid2', flightPath.getPointAtLength(pathLength * 0.66), -35);
-      positionLabel('label-end', flightPath.getPointAtLength(pathLength), 40);
-      document.querySelectorAll('.path-label').forEach(el => el.classList.add('visible'));
-    }
-  }
-
-  function positionLabel(id, pt, offsetY) {
-    const el = document.getElementById(id);
-    if(el) {
-      el.style.left = pt.x + 'px';
-      el.style.top = (pt.y + offsetY) + 'px';
-    }
   }
 
   function updateAirplanePosition() {
