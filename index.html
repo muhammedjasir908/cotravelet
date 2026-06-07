@@ -302,7 +302,13 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
 #t3 { z-index: 3; border-color: #FFA726; }
 #t4 { z-index: 2; border-color: #AB47BC; }
 #t5 { z-index: 1; border-color: #42A5F5; }
-.traveler-icon svg { width: 18px; height: 18px; }
+.traveler-icon svg { width: 20px; height: 20px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+#t0 svg { stroke: var(--navy); }
+#t1 svg { stroke: #EF5350; }
+#t2 svg { stroke: #66BB6A; }
+#t3 svg { stroke: #FFA726; }
+#t4 svg { stroke: #AB47BC; }
+#t5 svg { stroke: #42A5F5; }
 
 .waiting-person {
   position: absolute; z-index: 4; width: 32px; height: 32px; background: white; border-radius: 50%;
@@ -311,12 +317,12 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
   transform: translate(-50%, -50%); transition: all 0.4s ease;
 }
 .waiting-person.picked-up { opacity: 0; transform: translate(-50%, -50%) scale(0); }
-.waiting-person svg { width: 16px; height: 16px; fill: var(--text); }
-#waiting-0 svg { fill: #EF5350; }
-#waiting-1 svg { fill: #66BB6A; }
-#waiting-2 svg { fill: #FFA726; }
-#waiting-3 svg { fill: #AB47BC; }
-#waiting-4 svg { fill: #42A5F5; }
+.waiting-person svg { width: 16px; height: 16px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+#waiting-0 svg { stroke: #EF5350; }
+#waiting-1 svg { stroke: #66BB6A; }
+#waiting-2 svg { stroke: #FFA726; }
+#waiting-3 svg { stroke: #AB47BC; }
+#waiting-4 svg { stroke: #42A5F5; }
 
 .end-destination {
   position: absolute; z-index: 5; display: flex; align-items: center; gap: 8px;
@@ -357,20 +363,20 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
 </div>
 
 <!-- Waiting Buddies at sections -->
-<div id="waiting-0" class="waiting-person"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
-<div id="waiting-1" class="waiting-person"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
-<div id="waiting-2" class="waiting-person"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
-<div id="waiting-3" class="waiting-person"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
-<div id="waiting-4" class="waiting-person"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+<div id="waiting-0" class="waiting-person"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
+<div id="waiting-1" class="waiting-person"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
+<div id="waiting-2" class="waiting-person"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
+<div id="waiting-3" class="waiting-person"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
+<div id="waiting-4" class="waiting-person"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
 
 <!-- The Moving Travelers Group -->
 <div id="scroll-travelers" class="scroll-travelers">
-  <div class="traveler-icon" id="t0"><svg viewBox="0 0 24 24" fill="var(--navy)"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
-  <div class="traveler-icon hidden" id="t1"><svg viewBox="0 0 24 24" fill="#EF5350"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
-  <div class="traveler-icon hidden" id="t2"><svg viewBox="0 0 24 24" fill="#66BB6A"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
-  <div class="traveler-icon hidden" id="t3"><svg viewBox="0 0 24 24" fill="#FFA726"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
-  <div class="traveler-icon hidden" id="t4"><svg viewBox="0 0 24 24" fill="#AB47BC"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
-  <div class="traveler-icon hidden" id="t5"><svg viewBox="0 0 24 24" fill="#42A5F5"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+  <div class="traveler-icon" id="t0"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
+  <div class="traveler-icon hidden" id="t1"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
+  <div class="traveler-icon hidden" id="t2"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
+  <div class="traveler-icon hidden" id="t3"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
+  <div class="traveler-icon hidden" id="t4"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
+  <div class="traveler-icon hidden" id="t5"><svg viewBox="0 0 24 24"><circle cx="15" cy="5" r="2"/><path d="M15 7l1 6"/><path d="M16 13l-3 8"/><path d="M16 13l4 8"/><path d="M15 7l-3 4"/><path d="M15 7l4 4"/><rect x="7" y="7" width="5" height="7" rx="1"/><path d="M12 8l3-1"/><path d="M12 13l4-1"/></svg></div>
 </div>
 
 <!-- End Destination -->
