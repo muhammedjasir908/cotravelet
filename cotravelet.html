@@ -161,7 +161,8 @@ section { padding: 6rem 8vw; }
 #roadmap .sec-body { color: rgba(255,255,255,0.5); }
 .roadmap-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 4rem; align-items: end; }
 .roadmap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.phase-card { border-radius: 20px; padding: 2rem; position: relative; overflow: hidden; }
+.phase-card { border-radius: 20px; padding: 2rem; position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.phase-card:hover { transform: translateY(-6px); }
 .phase-card.active { background: linear-gradient(135deg, var(--sky) 0%, var(--sky-dark) 100%); box-shadow: 0 16px 48px rgba(27,191,234,0.35); }
 .phase-card.upcoming { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.08); }
 .phase-label { font-family: 'Nunito', sans-serif; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
@@ -203,16 +204,18 @@ section { padding: 6rem 8vw; }
 .plat-tags { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
 .plat-tag { background: var(--sky-light); color: var(--sky-dark); border-radius: 50px; padding: 0.22rem 0.7rem; font-family: 'Nunito', sans-serif; font-size: 0.68rem; font-weight: 800; }
 
-footer { background: var(--navy2); color: white; padding: 4rem 8vw 2.5rem; }
-.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
-.footer-logo { font-family: 'Nunito', sans-serif; font-size: 1.4rem; font-weight: 900; color: white; margin-bottom: 0.9rem; display: flex; align-items: center; gap: 10px; }
+footer { background: var(--navy2); color: white; padding: 5rem 8vw 3rem; position: relative; overflow: hidden; }
+footer::before { content: ''; position: absolute; top: -150px; right: -150px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(27,191,234,0.12) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.footer-logo { font-family: 'Nunito', sans-serif; font-size: 1.4rem; font-weight: 900; color: white; margin-bottom: 0.9rem; display: flex; align-items: center; gap: 10px; transition: transform 0.3s; }
+.footer-logo:hover { transform: scale(1.02); }
 .footer-logo .logo-icon { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, var(--sky), var(--sky-dark)); display: flex; align-items: center; justify-content: center; font-size: 1rem; }
 .footer-logo .accent { color: var(--orange); }
-.footer-desc { font-size: 0.875rem; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 240px; }
-.footer-col-title { font-family: 'Nunito', sans-serif; font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 1.1rem; }
-.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-.footer-links a { font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; font-weight: 600; }
-.footer-links a:hover { color: var(--sky); }
+.footer-desc { font-size: 0.875rem; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 280px; margin-top: 1rem; }
+.footer-col-title { font-family: 'Nunito', sans-serif; font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 1.5rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+.footer-links a { font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: all 0.25s ease; font-weight: 600; display: inline-block; }
+.footer-links a:hover { color: var(--sky); transform: translateX(6px); }
 .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: rgba(255,255,255,0.2); }
 .footer-dev-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,112,67,0.15); color: var(--orange); border-radius: 50px; padding: 0.3rem 0.9rem; font-family: 'Nunito', sans-serif; font-size: 0.72rem; font-weight: 800; }
 
@@ -237,6 +240,8 @@ footer { background: var(--navy2); color: white; padding: 4rem 8vw 2.5rem; }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .dev-banner { flex-direction: column; margin: 0 1.25rem 3rem; padding: 1.5rem; }
   .dev-banner-right { margin-left: 0; text-align: left; }
+}
+
 /* Traveling Animations added */
 .bg-animations {
   position: absolute;
@@ -274,10 +279,11 @@ footer { background: var(--navy2); color: white; padding: 4rem 8vw 2.5rem; }
 /* Screens Showcase Section */
 #showcase { background: var(--gray-bg); }
 .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 3rem; }
-.screen-wrapper { background: white; padding: 1.5rem; border-radius: 30px; box-shadow: var(--card-shadow); transition: transform 0.3s; cursor: pointer; }
-.screen-wrapper:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(27,191,234,0.2); }
+.screen-wrapper { background: white; padding: 1.25rem; border-radius: 30px; box-shadow: var(--card-shadow); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; border: 2px solid transparent; }
+.screen-wrapper:hover { transform: translateY(-12px) scale(1.02); box-shadow: 0 24px 60px rgba(27,191,234,0.25); border-color: rgba(27,191,234,0.15); }
 .screen-wrapper img { width: 100%; border-radius: 20px; display: block; border: 1px solid rgba(0,0,0,0.05); }
-.screen-title { text-align: center; font-family: 'Nunito', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--navy); margin-top: 1.5rem; }
+.screen-title { text-align: center; font-family: 'Nunito', sans-serif; font-size: 1.15rem; font-weight: 900; color: var(--navy); margin-top: 1.25rem; transition: color 0.3s; }
+.screen-wrapper:hover .screen-title { color: var(--sky); }
 </style>
 </head>
 <body>
