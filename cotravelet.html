@@ -743,15 +743,15 @@ footer::before { content: ''; position: absolute; top: -150px; right: -150px; wi
     
     for(let i = 0; i < steps; i++) {
       const isRight = i % 2 === 0;
-      // Sweep wide left and right. End at center for the final step.
-      const targetX = (i === steps - 1) ? w / 2 : (isRight ? w * 0.85 : w * 0.15);
+      // Sweep to the extreme edges (40px padding from the exact left/right screen edge)
+      const targetX = (i === steps - 1) ? w / 2 : (isRight ? w - 40 : 40);
       const targetY = currentY + stepY;
       
-      // Control points pull vertically to make a smooth 'S' wave
+      // Control points pull vertically very hard (0.85x instead of 0.6x) to make an ultra deep, wide swoop
       const cp1X = currentX;
-      const cp1Y = currentY + stepY * 0.6;
+      const cp1Y = currentY + stepY * 0.85;
       const cp2X = targetX;
-      const cp2Y = targetY - stepY * 0.6;
+      const cp2Y = targetY - stepY * 0.85;
       
       path += `C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${targetX} ${targetY} `;
       
